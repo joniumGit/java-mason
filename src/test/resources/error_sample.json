@@ -1,0 +1,22 @@
+{
+  "@error": {
+    "@id": "abcd-1234",
+    "@message": "A Problem",
+    "@code": "INVALID",
+    "@messages": [
+      "Hello",
+      "World"
+    ],
+    "@details": "There was issues in parsing",
+    "@httpStatusCode": 400,
+    "@time": "2021-05-12T23:20:50.52Z",
+    "@controls": {
+      "self": {
+        "href": "http://localhost:8000/error"
+      },
+      "collection": {
+        "href": "http://localhost:8000/errors"
+      }
+    }
+  }
+}
