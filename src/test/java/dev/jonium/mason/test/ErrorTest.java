@@ -11,8 +11,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 @DisplayName("Error tests")
@@ -58,49 +56,6 @@ public class ErrorTest {
         Assertions.assertTrue(error.isObject());
         Assertions.assertTrue(error.get(Tokens.Error.CONTROLS).isObject());
         Assertions.assertTrue(error.get(Tokens.Error.MESSAGES).isArray());
-    }
-
-    @Test
-    @DisplayName("Test properties")
-    public void properties() {
-        var message = "test";
-        var error = new SimpleMasonError(message);
-        Assertions.assertEquals(message, error.getMessage());
-        message = "newMessage";
-        error.setMessage(message);
-        Assertions.assertEquals(message, error.getMessage());
-        error.addMessage(message);
-        Assertions.assertTrue(error.getMessages().contains(message));
-        var values = List.of("hello", "world");
-        error.addMessages(values);
-        Assertions.assertTrue(error.getMessages().containsAll(values));
-        error.setMessages(new LinkedHashSet<>(values));
-        Assertions.assertTrue(error.getMessages().containsAll(values));
-        error.clearMessages();
-        Assertions.assertTrue(error.getMessages().isEmpty());
-        error.setMessages(null);
-        Assertions.assertNull(error.getMessages());
-        var id = "ID";
-        error.setId(id);
-        Assertions.assertEquals(id, error.getId());
-        error.setCode(id);
-        Assertions.assertEquals(id, error.getCode());
-        error.setHttpStatusCode(100);
-        Assertions.assertEquals(100, error.getHttpStatusCode());
-        var time = Instant.now();
-        error.setTime(time);
-        Assertions.assertEquals(time, error.getTime());
-        error.setControls(null);
-        Assertions.assertNull(error.getControls());
-        var ctrl = new MasonControl("test");
-        error.setControls(new LinkedHashMap<>());
-        error.addControl("test", ctrl);
-        Assertions.assertTrue(error.getControls().containsKey("test"));
-        Assertions.assertTrue(error.getControls().containsValue(ctrl));
-        Assertions.assertEquals(ctrl, error.addControl("test", new MasonControl("hello")));
-        Assertions.assertEquals(1, error.getControls().size());
-        error.clearControls();
-        Assertions.assertTrue(error.getControls().isEmpty());
     }
 
 }

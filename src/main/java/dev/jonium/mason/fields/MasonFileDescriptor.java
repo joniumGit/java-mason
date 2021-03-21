@@ -45,6 +45,7 @@ public class MasonFileDescriptor {
     @JsonProperty(DESCRIPTION)
     private String description;
 
+    @NotNull
     @Singular
     @ArrayType
     @JsonProperty(ACCEPT)

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.jonium.mason.annotations.ControlType;
 import dev.jonium.mason.support.ControlsSupport;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public interface MasonMeta extends ControlsSupport {
 
     @ControlType
     @JsonProperty(CONTROLS)
-    Map<String, MasonControl> getControls();
+    @NotNull Map<String, MasonControl> getControls();
 
     @JsonSetter(TITLE)
     void setTitle(String title);
@@ -45,6 +46,6 @@ public interface MasonMeta extends ControlsSupport {
 
     @ControlType
     @JsonSetter(CONTROLS)
-    void setControls(Map<String, MasonControl> controls);
+    void setControls(@NotNull Map<String, MasonControl> controls);
 
 }

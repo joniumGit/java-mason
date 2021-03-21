@@ -77,16 +77,22 @@ public class MasonAlt implements FileDescriptorSupport, AcceptsSupport, OutputSu
     @JsonProperty(TEMPLATE)
     private JsonNode template;
 
+    @NotNull
+    @NonNull
     @Singular
     @ArrayType
     @JsonProperty(ACCEPT)
     private Collection<String> accepts = new LinkedHashSet<>();
 
+    @NotNull
+    @NonNull
     @Singular
     @ArrayType
     @JsonProperty(OUTPUT)
     private Collection<String> outputs = new LinkedHashSet<>();
 
+    @NotNull
+    @NonNull
     @Singular
     @ArrayType
     @JsonSerialize(contentAs = MasonFileDescriptor.class)

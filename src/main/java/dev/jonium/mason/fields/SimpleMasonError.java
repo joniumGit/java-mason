@@ -36,8 +36,12 @@ public class SimpleMasonError implements MasonError {
     @NotNull
     @NonNull
     private String message;
+    @NotNull
+    @NonNull
     @Singular(value = "addMessage")
     private Collection<String> messages = new LinkedHashSet<>();
+    @NotNull
+    @NonNull
     @Singular
     private Map<String, MasonControl> controls = new LinkedHashMap<>();
     private String id;

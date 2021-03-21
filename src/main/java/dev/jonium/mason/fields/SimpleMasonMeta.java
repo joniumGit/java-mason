@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import dev.jonium.mason.serialization.Tokens;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -33,6 +34,8 @@ public class SimpleMasonMeta implements MasonMeta {
     @JsonProperty(Tokens.Meta.DESCRIPTION)
     private String description;
 
+    @NotNull
+    @NonNull
     @Singular
     private Map<String, MasonControl> controls = new LinkedHashMap<>();
 

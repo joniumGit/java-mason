@@ -46,7 +46,7 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
 
     @ControlType
     @JsonProperty(CONTROLS)
-    Map<String, MasonControl> getControls();
+    @NotNull Map<String, MasonControl> getControls();
 
     @JsonProperty(ID)
     String getId();
@@ -73,7 +73,7 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
 
     @ControlType
     @JsonSetter(CONTROLS)
-    void setControls(Map<String, MasonControl> controls);
+    void setControls(@NotNull Map<String, MasonControl> controls);
 
     @JsonSetter(ID)
     void setId(String id);

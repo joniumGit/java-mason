@@ -7,10 +7,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.jonium.mason.annotations.ArrayType;
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.Singular;
-import lombok.ToString;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.util.Collection;
@@ -43,6 +40,8 @@ public class MasonControl extends MasonAlt {
 
     @Getter
     @Setter
+    @NotNull
+    @NonNull
     @Singular
     @ArrayType
     @JsonSerialize(contentAs = MasonAlt.class)

@@ -6,6 +6,7 @@ import dev.jonium.mason.annotations.ControlType;
 import dev.jonium.mason.fields.MasonControl;
 import dev.jonium.mason.serialization.Tokens;
 import dev.jonium.mason.support.ControlsSupport;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Map;
 
@@ -20,10 +21,10 @@ public interface MasonControlsFeature extends ControlsSupport {
 
     @ControlType
     @JsonProperty(Tokens.Body.CONTROLS)
-    Map<String, MasonControl> getControls();
+    @NotNull Map<String, MasonControl> getControls();
 
     @ControlType
     @JsonSetter(value = Tokens.Body.CONTROLS)
-    void setControls(Map<String, MasonControl> controls);
+    void setControls(@NotNull Map<String, MasonControl> controls);
 
 }

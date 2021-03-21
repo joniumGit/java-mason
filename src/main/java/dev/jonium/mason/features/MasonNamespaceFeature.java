@@ -10,6 +10,7 @@ import dev.jonium.mason.serialization.NamespaceValueDeserializer;
 import dev.jonium.mason.serialization.NamespaceValueSerializer;
 import dev.jonium.mason.serialization.Tokens;
 import dev.jonium.mason.support.NamespacesSupport;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -31,7 +32,7 @@ public interface MasonNamespaceFeature extends NamespacesSupport {
             contentUsing = NamespaceValueSerializer.class
     )
     @JsonProperty(Tokens.Body.NAMESPACES)
-    Map<String, String> getNamespaces();
+    @NotNull Map<String, String> getNamespaces();
 
     @CollectionType
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -41,6 +42,6 @@ public interface MasonNamespaceFeature extends NamespacesSupport {
             contentUsing = NamespaceValueDeserializer.class
     )
     @JsonSetter(Tokens.Body.NAMESPACES)
-    void setNamespaces(Map<String, String> namespaces);
+    void setNamespaces(@NotNull Map<String, String> namespaces);
 
 }

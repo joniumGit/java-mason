@@ -1,17 +1,29 @@
 package dev.jonium.mason.test;
 
-import org.junit.jupiter.api.Disabled;
+import dev.jonium.mason.fields.MasonControl;
+import dev.jonium.mason.fields.MasonFileDescriptor;
+import dev.jonium.mason.serialization.Tokens;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("File descriptor tests")
 public class FilesTest {
 
-    @Disabled
     @Test
     @DisplayName("Serialize and test types")
     void serialize() {
-        // TODO
+        var fd = MasonFileDescriptor.builder()
+                                    .title("test")
+                                    .accept("test")
+                                    .accept("test1")
+                                    .description("test")
+                                    .build();
+        var tree = Utils.toTree(MasonControl.builder().href("test").fileDescriptor(fd).build());
+        var files = tree.get(Tokens.Controls.FILES);
+        Assertions.assertTrue(files.isArray());
+        var file = files.get(0);
+        Assertions.assertTrue(file.get(Tokens.Controls.File.ACCEPT).isArray());
     }
 
 
