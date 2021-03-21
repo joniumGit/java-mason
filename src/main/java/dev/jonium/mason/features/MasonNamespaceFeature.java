@@ -23,7 +23,7 @@ import java.util.Map;
  */
 public interface MasonNamespaceFeature extends NamespacesSupport {
 
-    @CollectionType.Getter
+    @CollectionType
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     @JsonSerialize(
             as = LinkedHashMap.class,
@@ -33,7 +33,7 @@ public interface MasonNamespaceFeature extends NamespacesSupport {
     @JsonProperty(Tokens.Body.NAMESPACES)
     Map<String, String> getNamespaces();
 
-    @CollectionType.Setter
+    @CollectionType
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     @JsonDeserialize(
             as = LinkedHashMap.class,

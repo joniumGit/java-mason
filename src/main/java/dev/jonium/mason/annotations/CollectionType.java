@@ -10,26 +10,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation used internally to mark and control the serialization and deserialization of general collections in Mason
+ * Mega annotation for Collection types
  */
 @JsonSetter(nulls = Nulls.AS_EMPTY)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
-@Target(ElementType.FIELD)
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface CollectionType {
-
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Setter {
-
-    }
-
-    @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Getter {
-
-    }
-
-}
+public @interface CollectionType {}

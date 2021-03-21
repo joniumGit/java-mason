@@ -40,7 +40,7 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
     @JsonProperty(Tokens.Error.MESSAGE)
     String getMessage();
 
-    @ArrayType.Getter
+    @ArrayType
     @JsonProperty(MESSAGES)
     Collection<String> getMessages();
 
@@ -67,7 +67,7 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
     @JsonSetter(MESSAGE)
     void setMessage(String message);
 
-    @ArrayType.Setter
+    @ArrayType
     @JsonSetter(MESSAGES)
     void setMessages(Collection<String> messages);
 

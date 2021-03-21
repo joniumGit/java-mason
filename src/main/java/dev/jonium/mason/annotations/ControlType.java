@@ -13,6 +13,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * One mega annotation for annotating all methods related to controls
+ */
 @JsonSetter(nulls = Nulls.AS_EMPTY)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)

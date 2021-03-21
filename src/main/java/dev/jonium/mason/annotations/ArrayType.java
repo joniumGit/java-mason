@@ -23,23 +23,7 @@ import java.util.LinkedHashSet;
 @JsonFormat(shape = JsonFormat.Shape.ARRAY)
 @JsonSetter(nulls = Nulls.AS_EMPTY)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
-@Target(ElementType.FIELD)
+@JsonDeserialize(as = LinkedHashSet.class)
+@Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ArrayType {
-
-    @JsonSetter(nulls = Nulls.AS_EMPTY)
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Setter {
-
-    }
-
-    @JsonFormat(shape = JsonFormat.Shape.ARRAY)
-    @JsonDeserialize(as = LinkedHashSet.class)
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @interface Getter {
-
-    }
-
-}
+public @interface ArrayType {}
