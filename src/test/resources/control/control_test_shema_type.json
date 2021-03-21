@@ -1,0 +1,37 @@
+{
+  "@controls": {
+    "test": {
+      "href": "test",
+      "schema": "test",
+      "template": "test"
+    },
+    "test1": {
+      "href": "test1",
+      "schema": [
+        "test1"
+      ],
+      "template": [
+        "test1"
+      ]
+    },
+    "test2": {
+      "href": "test2",
+      "schema": {
+        "test2": "test2"
+      },
+      "template": {
+        "test2": "test2"
+      }
+    },
+    "test3": {
+      "href": "test3",
+      "schema": 1,
+      "template": 1
+    },
+    "test4": {
+      "href": "test4",
+      "schema": null,
+      "template": null
+    }
+  }
+}

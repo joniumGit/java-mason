@@ -1,0 +1,57 @@
+{
+  "@controls": {
+    "self": {
+      "href": "self",
+      "alt": [
+        {
+          "title": "test",
+          "href": "test",
+          "isHrefTemplate": false,
+          "description": "test",
+          "method": "POST",
+          "encoding": "json",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              }
+            }
+          },
+          "schemaUrl": "test",
+          "template": {
+            "id": 1
+          },
+          "accept": [
+            "test1",
+            "test2"
+          ],
+          "output": [
+            "test1",
+            "test2"
+          ],
+          "files": [
+            {
+              "name": "test1",
+              "title": "test1",
+              "description": "test1",
+              "accept": [
+                "test1",
+                "test2"
+              ]
+            },
+            {
+              "name": "test2",
+              "title": "test2",
+              "description": "test2",
+              "accept": [
+                "test1",
+                "test2"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

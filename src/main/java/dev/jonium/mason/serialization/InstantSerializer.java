@@ -7,6 +7,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
 import java.time.Instant;
 
+/**
+ * This is a helper class to serialize {@link Instant} into a RFC3339 timestamp
+ */
 public class InstantSerializer extends JsonSerializer<Instant> {
 
     @Override
@@ -15,6 +18,6 @@ public class InstantSerializer extends JsonSerializer<Instant> {
     ) throws IOException
     {
         //TODO: RFC3339
-        jsonGenerator.writeRawValue(instant.toString());
+        jsonGenerator.writeString(instant.toString());
     }
 }

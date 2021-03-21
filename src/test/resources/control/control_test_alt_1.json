@@ -1,0 +1,17 @@
+{
+  "@controls": {
+    "self": {
+      "href": "href-self",
+      "alt": [
+        {
+          "title": "self-xml",
+          "href": "href-xml-self"
+        },
+        {
+          "title": "self-other",
+          "href": "self-other"
+        }
+      ]
+    }
+  }
+}

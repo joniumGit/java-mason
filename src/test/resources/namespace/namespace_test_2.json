@@ -1,0 +1,10 @@
+{
+  "@namespaces": {
+    "test": {
+      "name": "test"
+    },
+    "jest": {
+      "name": "jest"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "@meta": {
+    "@title": "test",
+    "@description": "test",
+    "@controls": {
+      "self": {
+        "href": "test"
+      }
+    }
+  }
+}

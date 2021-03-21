@@ -7,16 +7,23 @@ module dev.jonium.mason {
     requires com.fasterxml.jackson.core;
 
     opens dev.jonium.mason to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
-    opens dev.jonium.mason.core to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
-    opens dev.jonium.mason.core.control to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
+
+    opens dev.jonium.mason.features to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
+
+    opens dev.jonium.mason.fields to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
+
+    opens dev.jonium.mason.support to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
+
+    opens dev.jonium.mason.annotations to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
     opens dev.jonium.mason.serialization to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
-    opens dev.jonium.mason.collections to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
-    opens dev.jonium.mason.collections.support to com.fasterxml.jackson.core, com.fasterxml.jackson.databind;
 
     exports dev.jonium.mason;
-    exports dev.jonium.mason.core;
-    exports dev.jonium.mason.core.control;
+
+    exports dev.jonium.mason.features;
+    exports dev.jonium.mason.fields;
+
+    exports dev.jonium.mason.support;
+
+    exports dev.jonium.mason.annotations;
     exports dev.jonium.mason.serialization;
-    exports dev.jonium.mason.collections;
-    exports dev.jonium.mason.collections.support;
 }

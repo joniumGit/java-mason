@@ -1,0 +1,23 @@
+{
+  "@controls": {
+    "test": {
+      "href": "test",
+      "encoding": "none"
+    },
+    "test1": {
+      "href": "test1",
+      "encoding": "json"
+    },
+    "test2": {
+      "href": "test2",
+      "encoding": "json+files"
+    },
+    "test3": {
+      "href": "test3",
+      "encoding": "raw"
+    },
+    "test4": {
+      "href": "test4"
+    }
+  }
+}

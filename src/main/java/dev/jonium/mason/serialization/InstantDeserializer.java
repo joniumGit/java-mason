@@ -6,20 +6,20 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import java.io.IOException;
+import java.time.Instant;
 
 /**
- * Uses {@link NamespaceValue} to Deserialize namespace objects form a Mason document
- *
- * @see NamespaceValueSerializer
- * @see NamespaceValueDeserializer
+ * This is a helper class to serialize {@link Instant} into a RFC3339 timestamp
  */
-public class NamespaceValueDeserializer extends JsonDeserializer<String> {
+public class InstantDeserializer extends JsonDeserializer<Instant> {
+
     @Override
-    public String deserialize(
+    public Instant deserialize(
             JsonParser jsonParser,
             DeserializationContext deserializationContext
     ) throws IOException, JsonProcessingException
     {
-        return jsonParser.readValueAs(NamespaceValue.class).getName();
+        //TODO: RFC3339
+        return Instant.parse(jsonParser.readValueAs(String.class));
     }
 }

@@ -1,0 +1,33 @@
+{
+  "@controls": {
+    "test": {
+      "href": "test",
+      "isHrefTemplate": false,
+      "title": "test",
+      "description": "test",
+      "method": "PUT",
+      "encoding": "json",
+      "schema": {
+      },
+      "schemaUrl": "test",
+      "template": {
+      },
+      "accept": [
+        "test"
+      ],
+      "output": [
+        "test"
+      ],
+      "files": [
+        {
+          "name": "test"
+        }
+      ],
+      "alt": [
+        {
+          "href": "test"
+        }
+      ]
+    }
+  }
+}

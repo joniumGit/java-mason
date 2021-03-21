@@ -2,17 +2,15 @@ package dev.jonium.mason.serialization;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dev.jonium.mason.collections.Namespaces;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NonNull;
 
-import static dev.jonium.mason.Tokens.Namespaces.NAME;
+import static dev.jonium.mason.serialization.Tokens.Namespaces.NAME;
 
 /**
  * Helper for Serializing/Deserializing Mason Namespaces
  *
- * @see Namespaces
  * @see NamespaceValueSerializer
  * @see NamespaceValueDeserializer
  */

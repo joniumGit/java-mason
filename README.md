@@ -3,6 +3,10 @@
 Aims at implementing a generator and reader for [Mason+Json](https://github.com/JornWildt/Mason)
 using [Jackson](https://github.com/FasterXML/jackson) and pure Java.
 
+## TODO
+
+* Support for RFC3339 dates
+
 ## Uses
 
 * Java 11

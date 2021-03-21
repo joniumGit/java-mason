@@ -1,0 +1,19 @@
+{
+  "@error": {
+    "@id": "test-1-error",
+    "@message": "error",
+    "@code": "ERROR",
+    "@messages": [
+      "test",
+      "error"
+    ],
+    "@details": "error",
+    "@httpStatusCode": 501,
+    "@time": "2021-05-12T23:20:50.52Z",
+    "@controls": {
+      "test": {
+        "href": "test"
+      }
+    }
+  }
+}
