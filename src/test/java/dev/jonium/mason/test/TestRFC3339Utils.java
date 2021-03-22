@@ -36,7 +36,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Test no throw")
-    void noThrow() {
+    public void noThrow() {
         for (var c : List.of(misc, hasNanos, hasMillis)) {
             Assertions.assertDoesNotThrow(() -> c.forEach(RFC3339DateUtils::read));
         }
@@ -45,7 +45,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Assert equals misc")
-    void equalingMisc() {
+    public void equalingMisc() {
         var time = ZonedDateTime.parse("2021-01-01T12:00:02Z");
         Assertions.assertDoesNotThrow(
                 () -> misc
@@ -59,7 +59,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Assert equals millis")
-    void equalingMillis() {
+    public void equalingMillis() {
         var time = ZonedDateTime.parse("2021-01-01T12:00:02.0001Z");
         Assertions.assertDoesNotThrow(
                 () -> hasMillis
@@ -73,7 +73,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Assert equals nanos")
-    void equalingNanos() {
+    public void equalingNanos() {
         var time = ZonedDateTime.from(DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse("2021-01-01T10:00:02.000000001+02:00"));
         Assertions.assertDoesNotThrow(
                 () -> hasNanos
@@ -87,7 +87,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Test writing")
-    void writing() {
+    public void writing() {
         var date = "2021-01-01T10:00:02.000000001+02:12";
         var time = ZonedDateTime.from(DateTimeFormatter.ISO_OFFSET_DATE_TIME.parse(date));
         var time2 = RFC3339DateUtils.read(date);
@@ -106,7 +106,7 @@ public class TestRFC3339Utils {
 
     @Test
     @DisplayName("Test throws")
-    void doThrows() {
+    public void doThrows() {
         var date = "2021-01-01T10:00:02.000000001+02:12";
         Assertions.assertThrows(IllegalArgumentException.class,
                                 () -> RFC3339DateUtils.readUnknownAt(
