@@ -5,17 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.jonium.mason.annotations.ArrayType;
 import dev.jonium.mason.annotations.ControlType;
 import dev.jonium.mason.impl.SimpleMasonError;
-import dev.jonium.mason.serialization.RFC3339Deserializer;
-import dev.jonium.mason.serialization.RFC3339Serializer;
+import dev.jonium.mason.serialization.RFC3339DateUtils;
 import dev.jonium.mason.support.ControlsSupport;
 import dev.jonium.mason.support.MessagesSupport;
 import jakarta.validation.constraints.NotNull;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.Map;
 
@@ -59,9 +56,11 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
     @JsonProperty(HTTP_STATUS_CODE)
     Integer getHttpStatusCode();
 
-    @JsonSerialize(using = RFC3339Serializer.class)
+    /**
+     * @see RFC3339DateUtils
+     */
     @JsonProperty(TIME)
-    Instant getTime();
+    String getTime();
 
     @JsonProperty(value = MESSAGE, required = true)
     void setMessage(String message);
@@ -86,8 +85,10 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
     @JsonSetter(value = HTTP_STATUS_CODE, nulls = Nulls.FAIL)
     void setHttpStatusCode(Integer httpStatusCode);
 
-    @JsonDeserialize(using = RFC3339Deserializer.class)
+    /**
+     * @see RFC3339DateUtils
+     */
     @JsonSetter(value = TIME, nulls = Nulls.FAIL)
-    void setTime(Instant time);
+    void setTime(String time);
 
 }

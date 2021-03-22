@@ -3,12 +3,13 @@ package dev.jonium.mason.test;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.jonium.mason.*;
 import dev.jonium.mason.impl.*;
+import dev.jonium.mason.serialization.RFC3339DateUtils;
 import dev.jonium.mason.serialization.Tokens;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
+import java.time.ZonedDateTime;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +17,7 @@ import java.util.Map;
 @DisplayName("Test impl")
 public class TestMason {
 
-    Instant i = Instant.now();
+    ZonedDateTime time = ZonedDateTime.now();
     MasonFileDescriptor builtFile = SimpleMasonFileDescriptor
             .builder()
             .name("name")
@@ -49,7 +50,7 @@ public class TestMason {
             .details("details")
             .addMessage("msgs")
             .control("ctrl", builtControl)
-            .time(i)
+            .time(RFC3339DateUtils.writeOffsetUnknown(time))
             .build();
     MasonMeta builtMeta = SimpleMasonMeta
             .builder()

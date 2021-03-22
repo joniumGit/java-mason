@@ -5,7 +5,6 @@ import dev.jonium.mason.MasonError;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
-import java.time.Instant;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -47,5 +46,5 @@ public final class SimpleMasonError implements MasonError {
     @NonNull
     @Singular
     private Map<@NotNull String, @NotNull MasonControl> controls = new LinkedHashMap<>();
-    private Instant time;
+    private String time;
 }

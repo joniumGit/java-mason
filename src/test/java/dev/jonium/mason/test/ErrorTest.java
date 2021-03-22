@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Instant;
 import java.util.List;
 
 @DisplayName("Error tests")
@@ -27,7 +26,7 @@ public class ErrorTest {
                                 .messages(List.of("test", "error"))
                                 .details("error")
                                 .httpStatusCode(501)
-                                .time(Instant.parse("2021-05-12T23:20:50.52Z"))
+                                .time("2021-05-12T23:20:50.52Z")
                                 .control(
                                         "test",
                                         SimpleMasonControl.builder().href("test").build()
