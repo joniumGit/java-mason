@@ -14,7 +14,7 @@ public class MetaTest {
 
     @Test
     @DisplayName("Test sample")
-    void sample() {
+    public void sample() {
         var mason = Utils.read(Utils.readFile("/meta/meta_test_full.json"), Mason.class);
         Assertions.assertNotNull(mason.getMeta());
         Assertions.assertEquals("test", mason.getMeta().getTitle());
@@ -24,7 +24,7 @@ public class MetaTest {
 
     @Test
     @DisplayName("Serialize and test types")
-    void serialize() {
+    public void serialize() {
         var tree = Utils.toTree(SimpleMason.builder().meta(
                 SimpleMasonMeta.builder()
                                .title("test")

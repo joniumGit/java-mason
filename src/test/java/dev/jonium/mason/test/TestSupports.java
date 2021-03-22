@@ -17,7 +17,7 @@ public class TestSupports {
     /**
      * Finds a method based on regex
      */
-    Method findWithPattern(String regex, Class<?> clazz) {
+    private Method findWithPattern(String regex, Class<?> clazz) {
         return Arrays.stream(clazz.getMethods())
                      .filter(m -> m.getName().matches(regex))
                      .findFirst()
@@ -27,7 +27,7 @@ public class TestSupports {
     /**
      * Asserts that a reflective invocation throws an NPE with default Lombok message or Null starting message
      */
-    void assertWrappedNPE(Executable supplier) {
+    private void assertWrappedNPE(Executable supplier) {
         var ive = Assertions.assertThrows(InvocationTargetException.class, supplier);
         Assertions.assertTrue(
                 ive.getCause().getMessage().startsWith("Null")
@@ -42,7 +42,7 @@ public class TestSupports {
     /**
      * Tests different kinds of inputs on collection type supports
      */
-    void testCollectionType(
+    private void testCollectionType(
             Object tester,
             Object insertable,
             Class<?> methodsProvider
@@ -73,7 +73,7 @@ public class TestSupports {
     /**
      * Tests different kinds of inputs on map type supports
      */
-    void testMapType(
+    private void testMapType(
             Object tester,
             Map.Entry<?, ?> insertable,
             Class<?> methodsProvider
@@ -119,7 +119,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Accepts")
-    void accepts() {
+    public void accepts() {
         var control = new SimpleMasonControl();
         var file = new SimpleMasonFileDescriptor();
         for (var o : List.of(control, file)) {
@@ -133,7 +133,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Outputs")
-    void outputs() {
+    public void outputs() {
         var control = new SimpleMasonControl();
         testCollectionType(
                 control,
@@ -144,7 +144,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Alts")
-    void alts() {
+    public void alts() {
         var control = new SimpleMasonControl();
         testCollectionType(
                 control,
@@ -155,7 +155,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Messages")
-    void messages() {
+    public void messages() {
         var error = new SimpleMasonError();
         testCollectionType(
                 error,
@@ -166,7 +166,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("FileDescriptor")
-    void fd() {
+    public void fd() {
         var control = new SimpleMasonControl();
         testCollectionType(
                 control,
@@ -177,7 +177,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Controls")
-    void controls() {
+    public void controls() {
         var mason = new SimpleMason();
         var error = new SimpleMasonError();
         var meta = new SimpleMasonMeta();
@@ -192,7 +192,7 @@ public class TestSupports {
 
     @Test
     @DisplayName("Namespaces")
-    void ns() {
+    public void ns() {
         var mason = new SimpleMason();
         testMapType(
                 mason,

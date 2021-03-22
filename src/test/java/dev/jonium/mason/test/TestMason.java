@@ -70,7 +70,7 @@ public class TestMason {
      */
     @Test
     @DisplayName("Test toString")
-    void strings() {
+    public void strings() {
         Assertions.assertDoesNotThrow(builtFile::toString);
         Assertions.assertDoesNotThrow(builtControl::toString);
         Assertions.assertDoesNotThrow(builtError::toString);
@@ -87,7 +87,7 @@ public class TestMason {
      */
     @Test
     @DisplayName("Test collection contains")
-    void contains() {
+    public void contains() {
         var set = new LinkedHashSet<>();
         for (var o : List.of(builtMason, builtMeta, builtError, builtControl, builtFile)) {
             Assertions.assertTrue(set.add(o));
@@ -102,7 +102,7 @@ public class TestMason {
      */
     @Test
     @DisplayName("Serialize and test types")
-    void types() {
+    public void types() {
         var tree = Utils.toTree(builtMason);
         Assertions.assertTrue(tree.get(Tokens.Body.META).isObject());
         Assertions.assertTrue(tree.get(Tokens.Body.CONTROLS).isObject());

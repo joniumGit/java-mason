@@ -21,7 +21,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Test Sample Alt 1")
-    void altSample() {
+    public void altSample() {
         var mason = Utils.readFromFile("/control/control_test_alt_1.json", Mason.class);
         Assertions.assertNotNull(mason.getControls());
         var control = mason.getControls().get("self");
@@ -40,7 +40,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Test Sample Alt 2")
-    void altSample2() {
+    public void altSample2() {
         var mason = Utils.readFromFile("/control/control_test_alt_2.json", Mason.class);
         var control = mason.getControls().get("self");
         var alt = control.getAlts().stream().findFirst().orElseThrow(AssertionError::new);
@@ -62,7 +62,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Test Sample Encoding")
-    void encoding() {
+    public void encoding() {
         var mason = Utils.readFromFile("/control/control_test_encoding.json", Mason.class);
         Function<MasonEncoding, Boolean> tester = me -> mason.getControls()
                                                              .values()
@@ -77,7 +77,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Test Sample Schema and template type")
-    void schema() {
+    public void schema() {
         var mason = Utils.readFromFile("/control/control_test_schema_type_object.json", Mason.class);
         Function<Function<JsonNode, Boolean>, Boolean> tester = nc -> mason.getControls().values().stream().anyMatch(
                 mc -> nc.apply(mc.getSchema())
@@ -104,7 +104,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Test Sample Full")
-    void full() {
+    public void full() {
         var mason = Utils.readFromFile("/control/control_test_full.json", Mason.class);
         Assertions.assertFalse(mason.getControls().isEmpty());
         Assertions.assertFalse(
@@ -120,7 +120,7 @@ public class ControlsTest {
 
     @Test
     @DisplayName("Serialize and test types")
-    void serialize() {
+    public void serialize() {
         var control = SimpleMasonControl
                 .builder()
                 .href("test")

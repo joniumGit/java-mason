@@ -12,7 +12,7 @@ public class FilesTest {
 
     @Test
     @DisplayName("Serialize and test types")
-    void serialize() {
+    public void serialize() {
         var fd = SimpleMasonFileDescriptor.builder()
                                           .title("test")
                                           .accept("test")

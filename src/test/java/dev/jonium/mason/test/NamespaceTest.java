@@ -12,7 +12,7 @@ public class NamespaceTest {
 
     @Test
     @DisplayName("Test sample 1")
-    void sample() {
+    public void sample() {
         var mason = Utils.readFromFile("/namespace/namespace_test_1.json", Mason.class);
         Assertions.assertEquals("test", mason.getNamespaces().keySet().stream().findFirst().orElseThrow());
         Assertions.assertEquals("test", mason.getNamespaces().get("test"));
@@ -20,14 +20,14 @@ public class NamespaceTest {
 
     @Test
     @DisplayName("Test sample 2")
-    void sample2() {
+    public void sample2() {
         var mason = Utils.readFromFile("/namespace/namespace_test_2.json", Mason.class);
         Assertions.assertEquals(2, mason.getNamespaces().size());
     }
 
     @Test
     @DisplayName("Serialize and test types")
-    void serialize() {
+    public void serialize() {
         var mason = new SimpleMason();
         mason.addNamespace("test", "test");
         Assertions.assertTrue(mason.getNamespaces().containsKey("test"));

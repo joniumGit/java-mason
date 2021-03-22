@@ -54,7 +54,7 @@ public final class Utils {
     }
 
     @Getter
-    private static ObjectMapper mapper;
+    private static final ObjectMapper mapper;
 
     static {
         var om = new ObjectMapper();
