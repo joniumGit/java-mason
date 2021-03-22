@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public interface FileDescriptorSupport {
 
@@ -19,6 +20,9 @@ public interface FileDescriptorSupport {
     }
 
     default Boolean addFileDescriptors(@NotNull @NonNull Collection<@NotNull MasonFileDescriptor> fds) {
+        if (fds.parallelStream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("Null value");
+        }
         return getFileDescriptors().addAll(fds);
     }
 

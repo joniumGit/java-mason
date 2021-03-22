@@ -2,6 +2,8 @@ package dev.jonium.mason.impl;
 
 import dev.jonium.mason.Mason;
 import dev.jonium.mason.MasonControl;
+import dev.jonium.mason.MasonError;
+import dev.jonium.mason.MasonMeta;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -19,9 +21,9 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
-public final class SimpleMason implements Mason<SimpleMasonMeta, SimpleMasonError> {
-    private SimpleMasonMeta meta;
-    private SimpleMasonError error;
+public final class SimpleMason implements Mason<MasonMeta, MasonError> {
+    private MasonMeta meta;
+    private MasonError error;
     @NotNull
     @NonNull
     @Singular

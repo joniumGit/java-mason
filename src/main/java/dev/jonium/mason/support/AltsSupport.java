@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public interface AltsSupport {
 
@@ -19,6 +20,9 @@ public interface AltsSupport {
     }
 
     default Boolean addAlts(@NotNull @NonNull Collection<@NotNull MasonControl> alts) {
+        if (alts.parallelStream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("Null value");
+        }
         return getAlts().addAll(alts);
     }
 

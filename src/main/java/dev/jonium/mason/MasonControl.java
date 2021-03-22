@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -17,7 +16,6 @@ import dev.jonium.mason.support.FileDescriptorSupport;
 import dev.jonium.mason.support.OutputSupport;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedHashSet;
 
@@ -61,16 +59,14 @@ public interface MasonControl
     @JsonSetter(value = ENCODING, nulls = Nulls.FAIL)
     void setEncoding(@NotNull MasonEncoding encoding);
 
-    @JsonDeserialize(as = ObjectNode.class)
     @JsonSetter(value = SCHEMA, nulls = Nulls.FAIL)
-    void setSchema(JsonNode schema);
+    void setSchema(ObjectNode schema);
 
     @JsonSetter(value = SCHEMA_URL, nulls = Nulls.FAIL)
     void setSchemaUrl(String schemaUrl);
 
-    @JsonDeserialize(as = ObjectNode.class)
     @JsonSetter(value = TEMPLATE, nulls = Nulls.FAIL)
-    void setTemplate(JsonNode template);
+    void setTemplate(ObjectNode template);
 
     @ArrayType
     @JsonSetter(value = ACCEPT)
@@ -98,16 +94,14 @@ public interface MasonControl
     @JsonProperty(ENCODING)
     MasonEncoding getEncoding();
 
-    @JsonSerialize(as = ObjectNode.class)
     @JsonProperty(SCHEMA)
-    @NotNull JsonNode getSchema();
+    @NotNull ObjectNode getSchema();
 
     @JsonProperty(SCHEMA_URL)
     String getSchemaUrl();
 
-    @JsonSerialize(as = ObjectNode.class)
     @JsonProperty(TEMPLATE)
-    @NotNull JsonNode getTemplate();
+    @NotNull ObjectNode getTemplate();
 
     @ArrayType
     @JsonProperty(ACCEPT)
@@ -128,12 +122,12 @@ public interface MasonControl
     @NotNull Collection<@NotNull MasonFileDescriptor> getFileDescriptors();
 
     @ArrayType
-    @JsonSerialize(as = ArrayList.class, contentAs = SimpleMasonControl.class)
+    @JsonSerialize(as = LinkedHashSet.class, contentAs = SimpleMasonControl.class)
     @JsonProperty(ALT)
     @NotNull Collection<@NotNull MasonControl> getAlts();
 
     @ArrayType
-    @JsonDeserialize(as = ArrayList.class, contentAs = SimpleMasonControl.class)
+    @JsonDeserialize(as = LinkedHashSet.class, contentAs = SimpleMasonControl.class)
     @JsonSetter(ALT)
     void setAlts(@NotNull Collection<@NotNull MasonControl> alts);
 

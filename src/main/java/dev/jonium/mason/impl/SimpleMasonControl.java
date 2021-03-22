@@ -1,7 +1,7 @@
 package dev.jonium.mason.impl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import dev.jonium.mason.MasonControl;
 import dev.jonium.mason.MasonEncoding;
 import dev.jonium.mason.MasonFileDescriptor;
@@ -51,12 +51,14 @@ public final class SimpleMasonControl implements MasonControl {
     @Builder.Default
     @EqualsAndHashCode.Include
     private MasonEncoding encoding = MasonEncoding.NONE;
+
     {
         encoding = MasonEncoding.NONE;
     }
-    private JsonNode schema;
+
+    private ObjectNode schema;
     private String schemaUrl;
-    private JsonNode template;
+    private ObjectNode template;
     @NotNull
     @NonNull
     @Singular

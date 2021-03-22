@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
 import java.util.Collection;
+import java.util.Objects;
 
 public interface OutputSupport {
 
@@ -14,6 +15,9 @@ public interface OutputSupport {
     }
 
     default Boolean addOutputs(@NotNull @NonNull Collection<@NotNull String> outputs) {
+        if (outputs.parallelStream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("Null value");
+        }
         return getOutputs().addAll(outputs);
     }
 

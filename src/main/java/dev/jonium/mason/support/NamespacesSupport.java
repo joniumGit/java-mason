@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
 import java.util.Map;
+import java.util.Objects;
 
 public interface NamespacesSupport {
 
@@ -18,7 +19,13 @@ public interface NamespacesSupport {
     }
 
     default void addNamespaces(@NotNull @NonNull Map<@NotNull String, @NotNull String> namespaces) {
-        getNamespaces().putAll(namespaces);
+        if (namespaces.keySet().parallelStream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("Null key");
+        } else if (namespaces.values().parallelStream().anyMatch(Objects::isNull)) {
+            throw new NullPointerException("Null value");
+        } else {
+            getNamespaces().putAll(namespaces);
+        }
     }
 
     default String removeNamespace(@NotNull @NonNull String prefix)
