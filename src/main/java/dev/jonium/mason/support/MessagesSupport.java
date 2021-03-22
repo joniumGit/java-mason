@@ -7,13 +7,13 @@ import java.util.Collection;
 
 public interface MessagesSupport {
 
-    @NotNull Collection<String> getMessages();
+    @NotNull Collection<@NotNull String> getMessages();
 
     default Boolean addMessage(@NotNull @NonNull String message) {
         return getMessages().add(message);
     }
 
-    default Boolean addMessages(@NotNull @NonNull Collection<String> messages) {
+    default Boolean addMessages(@NotNull @NonNull Collection<@NotNull String> messages) {
         return getMessages().addAll(messages);
     }
 
@@ -21,7 +21,7 @@ public interface MessagesSupport {
         return getMessages().remove(message);
     }
 
-    default Boolean removeMessages(@NotNull @NonNull Collection<String> messages) {
+    default Boolean removeMessages(@NotNull @NonNull Collection<@NotNull String> messages) {
         return getMessages().removeAll(messages);
     }
 

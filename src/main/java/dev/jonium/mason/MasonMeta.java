@@ -1,10 +1,12 @@
-package dev.jonium.mason.fields;
+package dev.jonium.mason;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.jonium.mason.annotations.ControlType;
+import dev.jonium.mason.impl.SimpleMasonMeta;
 import dev.jonium.mason.support.ControlsSupport;
 import jakarta.validation.constraints.NotNull;
 
@@ -21,11 +23,10 @@ import static dev.jonium.mason.serialization.Tokens.Meta.*;
  * By default deserializes as {@link SimpleMasonMeta}
  * </p>
  *
- * @see SimpleMasonMeta#equals(Object)
- * @see SimpleMasonMeta#hashCode()
+ * @see SimpleMasonMeta
  */
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(as = SimpleMasonMeta.class)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public interface MasonMeta extends ControlsSupport {
 
     @JsonProperty(TITLE)
@@ -36,16 +37,16 @@ public interface MasonMeta extends ControlsSupport {
 
     @ControlType
     @JsonProperty(CONTROLS)
-    @NotNull Map<String, MasonControl> getControls();
+    @NotNull Map<@NotNull String, @NotNull MasonControl> getControls();
 
-    @JsonSetter(TITLE)
+    @JsonSetter(value = TITLE, nulls = Nulls.FAIL)
     void setTitle(String title);
 
-    @JsonSetter(DESCRIPTION)
+    @JsonSetter(value = DESCRIPTION, nulls = Nulls.FAIL)
     void setDescription(String description);
 
     @ControlType
-    @JsonSetter(CONTROLS)
-    void setControls(@NotNull Map<String, MasonControl> controls);
+    @JsonSetter(value = CONTROLS)
+    void setControls(@NotNull Map<@NotNull String, @NotNull MasonControl> controls);
 
 }

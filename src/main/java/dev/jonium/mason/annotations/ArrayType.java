@@ -21,7 +21,7 @@ import java.util.LinkedHashSet;
  * </p>
  */
 @JsonFormat(shape = JsonFormat.Shape.ARRAY)
-@JsonSetter(nulls = Nulls.AS_EMPTY)
+@JsonSetter(nulls = Nulls.FAIL, contentNulls = Nulls.FAIL)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(as = LinkedHashSet.class)
 @Target({ElementType.FIELD, ElementType.METHOD})

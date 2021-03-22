@@ -6,8 +6,7 @@ import dev.jonium.mason.features.MasonControlsFeature;
 import dev.jonium.mason.features.MasonErrorFeature;
 import dev.jonium.mason.features.MasonMetaFeature;
 import dev.jonium.mason.features.MasonNamespaceFeature;
-import dev.jonium.mason.fields.MasonError;
-import dev.jonium.mason.fields.MasonMeta;
+import dev.jonium.mason.impl.SimpleMason;
 
 /**
  * Represents a Mason object
@@ -28,6 +27,8 @@ import dev.jonium.mason.fields.MasonMeta;
  * <p>
  *     By default deserializes as {@link SimpleMason}
  * </p>
+ *
+ * @see SimpleMason
  */
 @JsonDeserialize(as = SimpleMason.class)
 public interface Mason<M extends MasonMeta, E extends MasonError>
@@ -35,7 +36,4 @@ public interface Mason<M extends MasonMeta, E extends MasonError>
                 MasonControlsFeature,
                 MasonErrorFeature<E>,
                 MasonNamespaceFeature
-{
-    @Override
-    void setError(E error);
-}
+{}

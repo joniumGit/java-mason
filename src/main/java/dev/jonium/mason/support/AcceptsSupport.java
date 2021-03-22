@@ -7,13 +7,13 @@ import java.util.Collection;
 
 public interface AcceptsSupport {
 
-    @NotNull Collection<String> getAccepts();
+    @NotNull Collection<@NonNull String> getAccepts();
 
     default Boolean addAccept(@NotNull @NonNull String accept) {
         return getAccepts().add(accept);
     }
 
-    default Boolean addAccepts(@NotNull @NonNull Collection<String> accepts) {
+    default Boolean addAccepts(@NotNull @NonNull Collection<@NotNull String> accepts) {
         return getAccepts().addAll(accepts);
     }
 
@@ -21,7 +21,7 @@ public interface AcceptsSupport {
         return getAccepts().remove(accept);
     }
 
-    default Boolean removeAccepts(@NotNull @NonNull Collection<String> accepts) {
+    default Boolean removeAccepts(@NotNull @NonNull Collection<@NotNull String> accepts) {
         return getAccepts().removeAll(accepts);
     }
 

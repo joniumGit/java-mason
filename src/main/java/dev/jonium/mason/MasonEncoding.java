@@ -1,4 +1,4 @@
-package dev.jonium.mason.fields;
+package dev.jonium.mason;
 
 import com.fasterxml.jackson.annotation.JsonEnumDefaultValue;
 import com.fasterxml.jackson.annotation.JsonProperty;

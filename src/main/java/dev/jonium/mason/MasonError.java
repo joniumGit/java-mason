@@ -1,15 +1,16 @@
-package dev.jonium.mason.fields;
+package dev.jonium.mason;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import dev.jonium.mason.annotations.ArrayType;
 import dev.jonium.mason.annotations.ControlType;
-import dev.jonium.mason.serialization.InstantDeserializer;
-import dev.jonium.mason.serialization.InstantSerializer;
-import dev.jonium.mason.serialization.Tokens;
+import dev.jonium.mason.impl.SimpleMasonError;
+import dev.jonium.mason.serialization.RFC3339Deserializer;
+import dev.jonium.mason.serialization.RFC3339Serializer;
 import dev.jonium.mason.support.ControlsSupport;
 import dev.jonium.mason.support.MessagesSupport;
 import jakarta.validation.constraints.NotNull;
@@ -29,24 +30,22 @@ import static dev.jonium.mason.serialization.Tokens.Error.*;
  * By default deserializes as {@link SimpleMasonError}
  * </p>
  *
- * @see SimpleMasonError#equals(Object)
- * @see SimpleMasonError#hashCode()
+ * @see SimpleMasonError
  */
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(as = SimpleMasonError.class)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public interface MasonError extends ControlsSupport, MessagesSupport {
 
-    @NotNull
-    @JsonProperty(Tokens.Error.MESSAGE)
-    String getMessage();
+    @JsonProperty(value = MESSAGE, required = true)
+    @NotNull String getMessage();
 
     @ArrayType
     @JsonProperty(MESSAGES)
-    Collection<String> getMessages();
+    Collection<@NotNull String> getMessages();
 
     @ControlType
     @JsonProperty(CONTROLS)
-    @NotNull Map<String, MasonControl> getControls();
+    @NotNull Map<@NotNull String, @NotNull MasonControl> getControls();
 
     @JsonProperty(ID)
     String getId();
@@ -60,35 +59,35 @@ public interface MasonError extends ControlsSupport, MessagesSupport {
     @JsonProperty(HTTP_STATUS_CODE)
     Integer getHttpStatusCode();
 
-    @JsonSerialize(using = InstantSerializer.class)
+    @JsonSerialize(using = RFC3339Serializer.class)
     @JsonProperty(TIME)
     Instant getTime();
 
-    @JsonSetter(MESSAGE)
+    @JsonProperty(value = MESSAGE, required = true)
     void setMessage(String message);
 
     @ArrayType
-    @JsonSetter(MESSAGES)
-    void setMessages(Collection<String> messages);
+    @JsonSetter(value = MESSAGES, nulls = Nulls.FAIL)
+    void setMessages(Collection<@NotNull String> messages);
 
     @ControlType
-    @JsonSetter(CONTROLS)
-    void setControls(@NotNull Map<String, MasonControl> controls);
+    @JsonSetter(value = CONTROLS, nulls = Nulls.FAIL)
+    void setControls(@NotNull Map<@NotNull String, @NotNull MasonControl> controls);
 
-    @JsonSetter(ID)
+    @JsonSetter(value = ID, nulls = Nulls.FAIL)
     void setId(String id);
 
-    @JsonSetter(CODE)
+    @JsonSetter(value = CODE, nulls = Nulls.FAIL)
     void setCode(String code);
 
-    @JsonSetter(DETAILS)
+    @JsonSetter(value = DETAILS, nulls = Nulls.FAIL)
     void setDetails(String details);
 
-    @JsonSetter(HTTP_STATUS_CODE)
+    @JsonSetter(value = HTTP_STATUS_CODE, nulls = Nulls.FAIL)
     void setHttpStatusCode(Integer httpStatusCode);
 
-    @JsonDeserialize(using = InstantDeserializer.class)
-    @JsonSetter(TIME)
+    @JsonDeserialize(using = RFC3339Deserializer.class)
+    @JsonSetter(value = TIME, nulls = Nulls.FAIL)
     void setTime(Instant time);
 
 }

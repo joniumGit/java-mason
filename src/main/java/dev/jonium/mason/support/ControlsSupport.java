@@ -1,6 +1,6 @@
 package dev.jonium.mason.support;
 
-import dev.jonium.mason.fields.MasonControl;
+import dev.jonium.mason.MasonControl;
 import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface ControlsSupport {
 
-    @NotNull Map<String, MasonControl> getControls();
+    @NotNull Map<@NotNull String, @NotNull MasonControl> getControls();
 
     default MasonControl addControl(
             @NotNull @NonNull String name,
@@ -18,7 +18,7 @@ public interface ControlsSupport {
         return getControls().put(name, control);
     }
 
-    default void addControls(@NotNull @NonNull Map<String, MasonControl> controlMap) {
+    default void addControls(@NotNull @NonNull Map<@NotNull String, @NotNull MasonControl> controlMap) {
         getControls().putAll(controlMap);
     }
 

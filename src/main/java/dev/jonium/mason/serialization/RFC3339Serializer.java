@@ -10,7 +10,7 @@ import java.time.Instant;
 /**
  * This is a helper class to serialize {@link Instant} into a RFC3339 timestamp
  */
-public class InstantSerializer extends JsonSerializer<Instant> {
+public class RFC3339Serializer extends JsonSerializer<Instant> {
 
     @Override
     public void serialize(

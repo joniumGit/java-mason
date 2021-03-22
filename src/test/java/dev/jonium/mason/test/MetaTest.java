@@ -1,9 +1,9 @@
 package dev.jonium.mason.test;
 
 import dev.jonium.mason.Mason;
-import dev.jonium.mason.SimpleMason;
-import dev.jonium.mason.fields.MasonControl;
-import dev.jonium.mason.fields.SimpleMasonMeta;
+import dev.jonium.mason.impl.SimpleMason;
+import dev.jonium.mason.impl.SimpleMasonControl;
+import dev.jonium.mason.impl.SimpleMasonMeta;
 import dev.jonium.mason.serialization.Tokens;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +29,7 @@ public class MetaTest {
                 SimpleMasonMeta.builder()
                                .title("test")
                                .description("test")
-                               .control("self", new MasonControl("test"))
+                               .control("self", SimpleMasonControl.builder().href("self").build())
                                .build()
         ).build());
         var meta = tree.get(Tokens.Body.META);

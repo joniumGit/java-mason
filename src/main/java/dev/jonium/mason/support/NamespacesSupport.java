@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface NamespacesSupport {
 
-    @NotNull Map<String, String> getNamespaces();
+    @NotNull Map<@NotNull String, @NotNull String> getNamespaces();
 
     default String addNamespace(
             @NotNull @NonNull String prefix,
@@ -17,7 +17,7 @@ public interface NamespacesSupport {
         return getNamespaces().put(prefix, uri);
     }
 
-    default void addNamespaces(@NotNull @NonNull Map<String, String> namespaces) {
+    default void addNamespaces(@NotNull @NonNull Map<@NotNull String, @NotNull String> namespaces) {
         getNamespaces().putAll(namespaces);
     }
 
@@ -29,5 +29,4 @@ public interface NamespacesSupport {
     default void clearNamespaces() {
         getNamespaces().clear();
     }
-
 }

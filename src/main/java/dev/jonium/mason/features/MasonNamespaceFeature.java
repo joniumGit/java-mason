@@ -32,7 +32,7 @@ public interface MasonNamespaceFeature extends NamespacesSupport {
             contentUsing = NamespaceValueSerializer.class
     )
     @JsonProperty(Tokens.Body.NAMESPACES)
-    @NotNull Map<String, String> getNamespaces();
+    @NotNull Map<@NotNull String, @NotNull String> getNamespaces();
 
     @CollectionType
     @JsonFormat(shape = JsonFormat.Shape.OBJECT)
@@ -41,7 +41,7 @@ public interface MasonNamespaceFeature extends NamespacesSupport {
             keyAs = String.class,
             contentUsing = NamespaceValueDeserializer.class
     )
-    @JsonSetter(Tokens.Body.NAMESPACES)
-    void setNamespaces(@NotNull Map<String, String> namespaces);
+    @JsonSetter(value = Tokens.Body.NAMESPACES)
+    void setNamespaces(@NotNull Map<@NotNull String, @NotNull String> namespaces);
 
 }

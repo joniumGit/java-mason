@@ -1,0 +1,13 @@
+{
+  "@controls": {
+    "test1": {
+      "href": "test1",
+      "schema": [
+        "test1"
+      ],
+      "template": [
+        "test1"
+      ]
+    }
+  }
+}

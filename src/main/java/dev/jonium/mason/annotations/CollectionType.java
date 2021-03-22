@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 /**
  * Mega annotation for Collection types
  */
-@JsonSetter(nulls = Nulls.AS_EMPTY)
+@JsonSetter(nulls = Nulls.FAIL, contentNulls = Nulls.FAIL)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)

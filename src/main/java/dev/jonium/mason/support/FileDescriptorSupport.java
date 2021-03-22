@@ -1,6 +1,6 @@
 package dev.jonium.mason.support;
 
-import dev.jonium.mason.fields.MasonFileDescriptor;
+import dev.jonium.mason.MasonFileDescriptor;
 import jakarta.validation.constraints.NotNull;
 import lombok.NonNull;
 
@@ -8,7 +8,7 @@ import java.util.Collection;
 
 public interface FileDescriptorSupport {
 
-    @NotNull Collection<MasonFileDescriptor> getFileDescriptors();
+    @NotNull Collection<@NotNull MasonFileDescriptor> getFileDescriptors();
 
     default Boolean addFileDescriptor(@NotNull @NonNull MasonFileDescriptor fd) {
         return getFileDescriptors().add(fd);
@@ -18,11 +18,11 @@ public interface FileDescriptorSupport {
         return getFileDescriptors().remove(fd);
     }
 
-    default Boolean addFileDescriptors(@NotNull @NonNull Collection<MasonFileDescriptor> fds) {
+    default Boolean addFileDescriptors(@NotNull @NonNull Collection<@NotNull MasonFileDescriptor> fds) {
         return getFileDescriptors().addAll(fds);
     }
 
-    default Boolean removeFileDescriptors(@NotNull @NonNull Collection<MasonFileDescriptor> fds) {
+    default Boolean removeFileDescriptors(@NotNull @NonNull Collection<@NotNull MasonFileDescriptor> fds) {
         return getFileDescriptors().removeAll(fds);
     }
 

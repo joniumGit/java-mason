@@ -14,16 +14,16 @@ import static dev.jonium.mason.serialization.Tokens.Namespaces.NAME;
  * @see NamespaceValueSerializer
  * @see NamespaceValueDeserializer
  */
-public class NamespaceValue {
+public final class NamespaceValue {
 
+    @NotNull
     @Getter
     @JsonProperty(NAME)
     private final String name;
 
-
     @JsonCreator
     public NamespaceValue(
-            @JsonProperty(NAME) @NotNull @NonNull String name
+            @JsonProperty(value = NAME, required = true) @NotNull @NonNull String name
     )
     {
         this.name = name;

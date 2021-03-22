@@ -3,7 +3,7 @@ package dev.jonium.mason.features;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
-import dev.jonium.mason.fields.MasonError;
+import dev.jonium.mason.MasonError;
 import dev.jonium.mason.serialization.Tokens;
 
 /**

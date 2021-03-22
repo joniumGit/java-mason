@@ -6,21 +6,22 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import dev.jonium.mason.fields.MasonControl;
+import dev.jonium.mason.impl.SimpleMasonControl;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.LinkedHashMap;
 
 /**
- * One mega annotation for annotating all methods related to controls
+ * Default annotation for serializing and deserializing MasonControls
  */
-@JsonSetter(nulls = Nulls.AS_EMPTY)
+@JsonSetter(nulls = Nulls.FAIL, contentNulls = Nulls.FAIL)
 @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @JsonFormat(shape = JsonFormat.Shape.OBJECT)
-@JsonSerialize(keyAs = String.class, contentAs = MasonControl.class)
-@JsonDeserialize(keyAs = String.class, contentAs = MasonControl.class)
+@JsonSerialize(as = LinkedHashMap.class, keyAs = String.class, contentAs = SimpleMasonControl.class)
+@JsonDeserialize(as = LinkedHashMap.class, keyAs = String.class, contentAs = SimpleMasonControl.class)
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ControlType {}

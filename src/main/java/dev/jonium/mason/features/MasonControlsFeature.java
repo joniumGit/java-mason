@@ -2,8 +2,8 @@ package dev.jonium.mason.features;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import dev.jonium.mason.MasonControl;
 import dev.jonium.mason.annotations.ControlType;
-import dev.jonium.mason.fields.MasonControl;
 import dev.jonium.mason.serialization.Tokens;
 import dev.jonium.mason.support.ControlsSupport;
 import jakarta.validation.constraints.NotNull;

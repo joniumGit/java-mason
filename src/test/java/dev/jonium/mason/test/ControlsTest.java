@@ -1,10 +1,14 @@
 package dev.jonium.mason.test;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.exc.InvalidNullException;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import dev.jonium.mason.Mason;
-import dev.jonium.mason.fields.MasonEncoding;
+import dev.jonium.mason.MasonEncoding;
+import dev.jonium.mason.impl.SimpleMasonControl;
+import dev.jonium.mason.impl.SimpleMasonFileDescriptor;
+import dev.jonium.mason.serialization.Tokens;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -68,36 +72,77 @@ public class ControlsTest {
         Assertions.assertTrue(tester.apply(MasonEncoding.JSON));
         Assertions.assertTrue(tester.apply(MasonEncoding.JSON_FILES));
         Assertions.assertTrue(tester.apply(MasonEncoding.RAW));
-        Assertions.assertTrue(tester.apply(null));
+        Assertions.assertFalse(tester.apply(null));
     }
 
     @Test
     @DisplayName("Test Sample Schema and template type")
     void schema() {
-        var mason = Utils.readFromFile("/control/control_test_shema_type.json", Mason.class);
+        var mason = Utils.readFromFile("/control/control_test_schema_type_object.json", Mason.class);
         Function<Function<JsonNode, Boolean>, Boolean> tester = nc -> mason.getControls().values().stream().anyMatch(
                 mc -> nc.apply(mc.getSchema())
                       && nc.apply(mc.getTemplate())
         );
-        Assertions.assertTrue(tester.apply(JsonNode::isNumber));
-        Assertions.assertTrue(tester.apply(JsonNode::isTextual));
         Assertions.assertTrue(tester.apply(JsonNode::isObject));
-        Assertions.assertTrue(tester.apply(JsonNode::isArray));
-        Assertions.assertTrue(tester.apply(JsonNode::isNull));
+        Assertions.assertThrows(
+                InvalidNullException.class,
+                () -> Utils.getMapper().readValue(
+                        Utils.readFile("/control/control_test_schema_type_null.json"),
+                        Mason.class
+                )
+        );
+        for (var file : List.of("number", "array", "text")) {
+            Assertions.assertThrows(
+                    MismatchedInputException.class,
+                    () -> Utils.getMapper().readValue(
+                            Utils.readFile(String.format("/control/control_test_schema_type_%1$s.json", file)),
+                            Mason.class
+                    )
+            );
+        }
     }
 
-    @Disabled
     @Test
     @DisplayName("Test Sample Full")
     void full() {
-        // TODO
+        var mason = Utils.readFromFile("/control/control_test_full.json", Mason.class);
+        Assertions.assertFalse(mason.getControls().isEmpty());
+        Assertions.assertFalse(
+                mason.getControls()
+                     .values()
+                     .stream()
+                     .findFirst()
+                     .orElseThrow(AssertionError::new)
+                     .getAlts()
+                     .isEmpty()
+        );
     }
 
-    @Disabled
     @Test
     @DisplayName("Serialize and test types")
     void serialize() {
-        // TODO
+        var control = SimpleMasonControl
+                .builder()
+                .href("test")
+                .alt(SimpleMasonControl.builder().href("hello").build())
+                .accepts(List.of("test"))
+                .outputs(List.of("test"))
+                .fileDescriptor(SimpleMasonFileDescriptor.builder().name("test").build())
+                .fileDescriptor(SimpleMasonFileDescriptor.builder().name("test1").build())
+                .build();
+        var tree = Utils.toTree(control);
+        Assertions.assertTrue(tree.get(Tokens.Controls.ALT).isArray());
+        Assertions.assertEquals(1, tree.get(Tokens.Controls.ALT).size());
+        for (int i = 0; i < tree.get(Tokens.Controls.ALT).size(); i++) {
+            Assertions.assertTrue(tree.get(Tokens.Controls.ALT).get(i).isObject());
+        }
+        Assertions.assertTrue(tree.get(Tokens.Controls.ACCEPT).isArray());
+        Assertions.assertTrue(tree.get(Tokens.Controls.OUTPUT).isArray());
+        Assertions.assertTrue(tree.get(Tokens.Controls.FILES).isArray());
+        Assertions.assertEquals(2, tree.get(Tokens.Controls.FILES).size());
+        for (int i = 0; i < tree.get(Tokens.Controls.ALT).size(); i++) {
+            Assertions.assertTrue(tree.get(Tokens.Controls.FILES).get(i).isObject());
+        }
     }
 
 }

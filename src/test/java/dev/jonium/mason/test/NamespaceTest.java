@@ -1,7 +1,7 @@
 package dev.jonium.mason.test;
 
 import dev.jonium.mason.Mason;
-import dev.jonium.mason.SimpleMason;
+import dev.jonium.mason.impl.SimpleMason;
 import dev.jonium.mason.serialization.Tokens;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
