@@ -1,9 +1,13 @@
 package dev.jonium.mason.test;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.TextNode;
 import dev.jonium.mason.*;
 import dev.jonium.mason.impl.*;
 import dev.jonium.mason.serialization.RFC3339DateUtils;
+import dev.jonium.mason.serialization.Rectangle;
 import dev.jonium.mason.serialization.Tokens;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -109,9 +113,36 @@ public class TestMason {
         Assertions.assertTrue(tree.get(Tokens.Body.CONTROLS).isObject());
         Assertions.assertTrue(tree.get(Tokens.Body.NAMESPACES).isObject());
         Assertions.assertTrue(tree.get(Tokens.Body.ERROR).isObject());
+    }
+
+    @Test
+    @DisplayName("Test wrapping")
+    public void wrapping() {
+        var rect = new Rectangle();
+        var mason = SimpleMason
+                .<Rectangle>builder()
+                .meta(builtMeta)
+                .error(builtError)
+                .control("ctrl", builtControl)
+                .namespace("name", "space")
+                .wrapped(rect)
+                .build();
+        var tree = Utils.toTree(mason);
+        Assertions.assertEquals(rect.getName().getName(), ((TextNode) tree.get("entity-name")).asText());
+        Assertions.assertEquals(
+                rect.getOtherName().getName(),
+                ((TextNode) tree.get("otherName").get("entity-name")).asText()
+        );
+        Assertions.assertEquals(rect.getHeight(), (float) ((NumericNode) tree.get("height")).asDouble());
+        Assertions.assertEquals(rect.getWidth(), ((NumericNode) tree.get("width")).asInt());
         System.out.println(Assertions.assertDoesNotThrow(
-                () -> Utils.getMapper().writerWithDefaultPrettyPrinter().writeValueAsString(builtMason)
+                () -> Utils.getMapper().writerWithDefaultPrettyPrinter().writeValueAsString(tree)
         ));
+        var mason2 = Assertions.assertDoesNotThrow(
+                () -> Utils.getMapper().readValue(Utils.write(mason), new TypeReference<SimpleMason<Rectangle>>() {})
+        );
+        Assertions.assertEquals(rect, mason2.getWrapped());
+        Assertions.assertEquals(mason, mason2);
     }
 
 }

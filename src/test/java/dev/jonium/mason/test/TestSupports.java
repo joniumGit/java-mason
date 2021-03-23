@@ -178,7 +178,7 @@ public class TestSupports {
     @Test
     @DisplayName("Controls")
     public void controls() {
-        var mason = new SimpleMason();
+        var mason = new SimpleMason<>();
         var error = new SimpleMasonError();
         var meta = new SimpleMasonMeta();
         for (var o : List.of(mason, error, meta)) {
@@ -193,7 +193,7 @@ public class TestSupports {
     @Test
     @DisplayName("Namespaces")
     public void ns() {
-        var mason = new SimpleMason();
+        var mason = new SimpleMason<>();
         testMapType(
                 mason,
                 new AbstractMap.SimpleEntry<>("hello", "world"),
