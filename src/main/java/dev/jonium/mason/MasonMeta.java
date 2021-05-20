@@ -1,12 +1,10 @@
 package dev.jonium.mason;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.jonium.mason.annotations.ControlType;
 import dev.jonium.mason.impl.SimpleMasonMeta;
+import dev.jonium.mason.serialization.Tokens;
 import dev.jonium.mason.support.ControlsSupport;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,6 +23,7 @@ import static dev.jonium.mason.serialization.Tokens.Meta.*;
  *
  * @see SimpleMasonMeta
  */
+@JsonRootName(Tokens.Body.META)
 @JsonDeserialize(as = SimpleMasonMeta.class)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public interface MasonMeta extends ControlsSupport {

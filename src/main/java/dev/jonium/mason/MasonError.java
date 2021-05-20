@@ -1,14 +1,12 @@
 package dev.jonium.mason;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonSetter;
-import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import dev.jonium.mason.annotations.ArrayType;
 import dev.jonium.mason.annotations.ControlType;
 import dev.jonium.mason.impl.SimpleMasonError;
 import dev.jonium.mason.serialization.RFC3339DateUtils;
+import dev.jonium.mason.serialization.Tokens;
 import dev.jonium.mason.support.ControlsSupport;
 import dev.jonium.mason.support.MessagesSupport;
 import jakarta.validation.constraints.NotNull;
@@ -29,6 +27,7 @@ import static dev.jonium.mason.serialization.Tokens.Error.*;
  *
  * @see SimpleMasonError
  */
+@JsonRootName(Tokens.Body.ERROR)
 @JsonDeserialize(as = SimpleMasonError.class)
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public interface MasonError extends ControlsSupport, MessagesSupport {
